@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blanc Maximalism｜白色法式极繁家居定制</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        frenchWhite: '#FCFAF8',
+                        cream: '#F8F3EE',
+                        goldSoft: '#C8A973',
+                        vintageBrown: '#5C4B42',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        french: '0 8px 30px rgba(92, 75, 66, 0.08)',
+                        soft: '0 4px 16px rgba(200, 169, 115, 0.12)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow-gold {
+                text-shadow: 0 1px 3px rgba(200,169,115,0.35);
+            }
+            .bg-texture {
+                background-image: radial-gradient(#e9e3dd 0.5px, transparent 0.5px);
+                background-size: 20px 20px;
+            }
+            .animate-fadeup {
+                animation: fadeUp 0.8s ease forwards;
+            }
+            .animate-img-float {
+                animation: imgFloat 6s ease-in-out infinite;
+            }
+            .card-hover {
+                transition: all 0.4s cubic-bezier(0.25,0.8,0.25,1);
+            }
+            .card-hover:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 14px 40px rgba(92,75,66,0.12);
+            }
+        }
+        @keyframes fadeUp {
+            from {opacity:0; transform: translateY(24px);}
+            to {opacity:1; transform: translateY(0);}
+        }
+        @keyframes imgFloat {
+            0% {transform: translateY(0px);}
+            50% {transform: translateY(-8px);}
+            100% {transform: translateY(0px);}
+        }
+        /* 家具拖拽容器 */
+        .furniture-item{
+            cursor: grab;
+        }
+        .furniture-item:active{
+            cursor: grabbing;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-frenchWhite bg-texture font-sans text-vintageBrown overflow-x-hidden">
+<!-- 导航栏 -->
+<header class="sticky top-0 z-50 bg-frenchWhite/90 backdrop-blur-md shadow-french">
+    <div class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <i class="fa fa-home text-goldSoft text-2xl"></i>
+            <h1 class="font-serif text-xl md:text-2xl font-semibold tracking-wide">Blanc Maximalism</h1>
+        </div>
+        <nav class="hidden md:flex gap-8 text-sm tracking-wide">
+            <a href="#home" class="hover:text-goldSoft transition-colors">首页</a>
+            <a href="#solutions" class="hover:text-goldSoft transition-colors">设计方案库</a>
+            <a href="#customize" class="hover:text-goldSoft transition-colors">自由搭配</a>
+            <a href="#about" class="hover:text-goldSoft transition-colors">极繁理念</a>
+        </nav>
+        <button id="loginBtn" class="px-5 py-2 border border-goldSoft text-goldSoft rounded-full hover:bg-goldSoft hover:text-white transition-all text-sm">
+            <i class="fa fa-user mr-1"></i>登录 / 注册
+        </button>
+    </div>
+</header>
+
+<!-- 登录弹窗 -->
+<div id="loginModal" class="fixed inset-0 bg-black/40 z-[100] hidden items-center justify-center">
+    <div class="bg-frenchWhite w-full max-w-md p-8 rounded-xl shadow-french animate-fadeup relative">
+        <button id="closeLogin" class="absolute top-4 right-4 text-vintageBrown/60 hover:text-vintageBrown text-xl">&times;</button>
+        <h2 class="font-serif text-2xl mb-6 text-center">会员登录</h2>
+        <div class="space-y-4">
+            <input type="text" placeholder="账号" class="w-full px-4 py-3 border border-cream rounded-lg focus:outline-none focus:border-goldSoft">
+            <input type="password" placeholder="密码" class="w-full px-4 py-3 border border-cream rounded-lg focus:outline-none focus:border-goldSoft">
+            <button class="w-full py-3 bg-goldSoft text-white rounded-lg hover:bg-amber-600 transition-colors">登录</button>
+            <p class="text-center text-sm text-vintageBrown/70">还没有账号？<span class="text-goldSoft cursor-pointer">立即注册</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- Hero首页横幅 -->
+<section id="home" class="min-h-[85vh] flex items-center container mx-auto px-4 md:px-8 py-12">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="animate-fadeup">
+            <p class="text-goldSoft tracking-widest text-sm mb-3">白色复古法式 · 真正极繁主义</p>
+            <h2 class="font-serif text-[clamp(2rem,5vw,3.5rem)] leading-tight font-medium mb-6">
+                多而不乱<br/>满而不塞<br/>加法的艺术
+            </h2>
+            <p class="text-vintageBrown/80 leading-relaxed mb-8 max-w-lg">
+                拒绝廉价堆砌，以强大设计控制力平衡丰富与秩序。纯白基底，复古雕花、柔美的线条、层次饱满，打造属于你的法式极繁居室。浏览成套方案，自由拖拽家具，实时搭配你的理想家。
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#solutions" class="px-7 py-3 bg-goldSoft text-white rounded-full shadow-soft hover:shadow-lg transition-all">浏览设计方案</a>
+                <a href="#customize" class="px-7 py-3 border border-vintageBrown/30 rounded-full hover:border-goldSoft hover:text-goldSoft transition-all">开始自由搭配</a>
+            </div>
+        </div>
+        <div class="relative">
+            <!-- 动态浮动效果图 -->
+            <div class="animate-img-float rounded-2xl overflow-hidden shadow-french">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000" alt="白色法式极繁客厅" class="w-full h-auto object-cover">
+            </div>
+            <div class="absolute -bottom-4 -left-4 w-32 h-32 rounded-xl shadow-soft overflow-hidden animate-img-float" style="animation-delay:1s">
+                <img src="https://images.unsplash.com/photo-1598928506126-2b2b2c2f81c4?q=80&w=400" alt="法式家具细节" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 设计方案库：带图片、价格 -->
+<section id="solutions" class="py-20 bg-cream/40">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="text-center mb-14">
+            <p class="text-goldSoft tracking-widest text-sm mb-2">精选成套方案</p>
+            <h3 class="font-serif text-3xl md:text-4xl">极繁法式设计方案库</h3>
+            <p class="mt-3 text-vintageBrown/70">登录查看完整图纸，每套方案均包含软装清单与落地报价</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 方案卡片1 -->
+            <div class="bg-frenchWhite rounded-2xl shadow-french overflow-hidden card-hover">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800" alt="纯白雕花极繁客厅" class="w-full h-64 object-cover animate-img-float">
+                </div>
+                <div class="p-6">
+                    <h4 class="font-serif text-xl mb-2">洛可可白序 · 客厅全套</h4>
+                    <p class="text-sm text-vintageBrown/70 mb-4">白色雕花护墙板，复古绒布家具，层次饱满有序，不堆砌。适合大平层。</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-goldSoft font-medium text-lg">落地软装报价 ¥286,000</span>
+                        <button class="text-sm border border-goldSoft px-3 py-1 rounded-full hover:bg-goldSoft hover:text-white">查看详情</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 方案卡片2 -->
+            <div class="bg-frenchWhite rounded-2xl shadow-french overflow-hidden card-hover">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800" alt="法式极繁卧室" class="w-full h-64 object-cover animate-img-float" style="animation-delay:0.7s">
+                </div>
+                <div class="p-6">
+                    <h4 class="font-serif text-xl mb-2">繁花白梦 · 主卧套间</h4>
+                    <p class="text-sm text-vintageBrown/70 mb-4">浮雕吊顶、复古幔床、碎花软装，白色基底克制丰富装饰。</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-goldSoft font-medium text-lg">落地软装报价 ¥192,500</span>
+                        <button class="text-sm border border-goldSoft px-3 py-1 rounded-full hover:bg-goldSoft hover:text-white">查看详情</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 方案卡片3 -->
+            <div class="bg-frenchWhite rounded-2xl shadow-french overflow-hidden card-hover">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800" alt="法式极繁餐厅" class="w-full h-64 object-cover animate-img-float" style="animation-delay:1.3s">
+                </div>
+                <div class="p-6">
+                    <h4 class="font-serif text-xl mb-2">鎏白盛宴 · 复古餐厅</h4>
+                    <p class="text-sm text-vintageBrown/70 mb-4">石膏线、水晶吊灯、复古餐椅，餐具装饰丰富但排布克制。</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-goldSoft font-medium text-lg">落地软装报价 ¥148,000</span>
+                        <button class="text-sm border border-goldSoft px-3 py-1 rounded-full hover:bg-goldSoft hover:text-white">查看详情</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 自由家具搭配器核心模块 -->
+<section id="customize" class="py-20">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="text-center mb-12">
+            <p class="text-goldSoft tracking-widest text-sm mb-2">交互式定制</p>
+            <h3 class="font-serif text-3xl md:text-4xl">自由搭配你的极繁法式家</h3>
+            <p class="mt-3 text-vintageBrown/70">拖拽下方家具放置样板间，自由组合，体验“多而不乱”极繁美学</p>
+        </div>
+
+        <div class="grid lg:grid-cols-4 gap-6">
+            <!-- 家具素材库侧边 -->
+            <div class="lg:col-span-1 bg-cream/40 rounded-xl p-5 shadow-french">
+                <h4 class="font-serif text-lg mb-4">家具素材库</h4>
+                <div class="space-y-3">
+                    <div class="furniture-item p-3 bg-white rounded-lg shadow-soft flex items-center gap-3" data-item="法式绒布沙发">
+                        <i class="fa fa-couch text-goldSoft text-xl"></i>
+                        <span>法式绒布沙发</span>
+                    </div>
+                    <div class="furniture-item p-3 bg-white rounded-lg shadow-soft flex items-center gap-3" data-item="雕花单人椅">
+                        <i class="fa fa-chair text-goldSoft text-xl"></i>
+                        <span>雕花单人椅</span>
+                    </div>
+                    <div class="furniture-item p-3 bg-white rounded-lg shadow-soft flex items-center gap-3" data-item="复古茶几">
+                        <i class="fa fa-table text-goldSoft text-xl"></i>
+                        <span>复古茶几</span>
+                    </div>
+                    <div class="furniture-item p-3 bg-white rounded-lg shadow-soft flex items-center gap-3" data-item="水晶落地灯">
+                        <i class="fa fa-lightbulb-o text-goldSoft text-xl"></i>
+                        <span>水晶落地灯</span>
+                    </div>
+                    <div class="furniture-item p-3 bg-white rounded-lg shadow-soft flex items-center gap-3" data-item="复古边柜">
+                        <i class="fa fa-archive text-goldSoft text-xl"></i>
+                        <span>复古边柜</span>
+                    </div>
+                    <div class="furniture-item p-3 bg-white rounded-lg shadow-soft flex items-center gap-3" data-item="花卉装饰摆件">
+                        <i class="fa fa-pagelines text-goldSoft text-xl"></i>
+                        <span>花卉装饰摆件</span>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-vintageBrown/10">
+                    <button id="clearCanvas" class="w-full py-2 bg-vintageBrown text-white rounded-lg hover:bg-vintageBrown/90">清空画布</button>
+                </div>
+            </div>
+            <!-- 样板间画布区域 -->
+            <div class="lg:col-span-3">
+                <div id="roomCanvas" class="relative w-full min-h-[520px] bg-[#f7f3ef] rounded-xl shadow-french overflow-hidden border border-cream">
+                    <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?q=80&w=1200" alt="白色法式样板间基底" class="absolute inset-0 w-full h-full object-cover opacity-35">
+                    <div id="dropHint" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <p class="bg-white/80 px-6 py-3 rounded-lg text-vintageBrown">👈 从左侧拖拽家具放置到样板间</p>
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-between items-center">
+                    <div>
+                        <p>已选家具：<span id="selectedCount">0</span>件</p>
+                        <p class="text-sm text-vintageBrown/70">极繁提示：家具不是越多越好，保留留白秩序，避免堆砌</p>
+                    </div>
+                    <button class="px-6 py-2 bg-goldSoft text-white rounded-lg">保存搭配方案</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 极繁主义理念介绍 -->
+<section id="about" class="py-20 bg-cream/40">
+    <div class="container mx-auto px-4 md:px-8 max-w-4xl">
+        <div class="text-center mb-10">
+            <h3 class="font-serif text-3xl">真正的白色法式极繁主义</h3>
+        </div>
+        <div class="bg-frenchWhite p-8 rounded-2xl shadow-french">
+            <div class="space-y-5 text-vintageBrown/85 leading-relaxed">
+                <p>极繁主义不等于杂乱堆砌。它是<strong>加法艺术</strong>：<span class="text-goldSoft">多而不乱、满而不塞</span>。</p>
+                <p>以纯净白色作为基底骨架，用复古法式雕花、柔美的曲线、丰富软装层次填充空间；依靠设计控制力建立秩序，分区、留白、统一色调，防止空间沦为廉价堆砌。</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>基底：大面积白色、米白、奶油白奠定秩序感</li>
+                    <li>装饰：丰富纹样、复古家具、艺术摆件，但控制密度</li>
+                    <li>秩序：分区留白，线条统一，色彩克制（金、米棕做点缀）</li>
+                    <li>核心：丰富，但有呼吸感</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-vintageBrown text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h4 class="font-serif text-2xl mb-3">Blanc Maximalism</h4>
+            <p class="opacity-70">白色复古法式极繁家居定制平台｜多而不乱 · 满而不塞</p>
+            <p class="mt-6 text-sm opacity-50">© 2026 版权所有</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// 登录弹窗逻辑
+const loginBtn = document.getElementById('loginBtn');
+const loginModal = document.getElementById('loginModal');
+const closeLogin = document.getElementById('closeLogin');
+
+loginBtn.addEventListener('click', ()=>{
+    loginModal.style.display = 'flex';
+})
+closeLogin.addEventListener('click', ()=>{
+    loginModal.style.display = 'none';
+})
+loginModal.addEventListener('click',(e)=>{
+    if(e.target === loginModal) loginModal.style.display='none';
+})
+
+// 简易拖拽家具搭配器
+const furnitureItems = document.querySelectorAll('.furniture-item');
+const roomCanvas = document.getElementById('roomCanvas');
+const clearCanvas = document.getElementById('clearCanvas');
+const selectedCount = document.getElementById('selectedCount');
+const dropHint = document.getElementById('dropHint');
+let count = 0;
+
+furnitureItems.forEach(item=>{
+    item.addEventListener('dragstart',(e)=>{
+        e.dataTransfer.setData('text/plain', item.dataset.item);
+    })
+    item.setAttribute('draggable',true);
+})
+
+roomCanvas.addEventListener('dragover', (e)=>{
+    e.preventDefault();
+})
+
+roomCanvas.addEventListener('drop', (e)=>{
+    e.preventDefault();
+    const name = e.dataTransfer.getData('text/plain');
+    if(!name) return;
+    dropHint.style.display = 'none';
+    count++;
+    selectedCount.innerText = count;
+
+    // 创建放置家具标签
+    const el = document.createElement('div');
+    el.className = 'absolute bg-white/85 px-3 py-2 rounded shadow-soft text-sm';
+    el.innerText = name;
+    el.style.left = e.offsetX + 'px';
+    el.style.top = e.offsetY + 'px';
+    el.style.transform = 'translate(-50%,-50%)';
+    roomCanvas.appendChild(el);
+})
+
+clearCanvas.addEventListener('click',()=>{
+    // 清除所有放置家具，保留背景图片
+    const allPlaced = roomCanvas.querySelectorAll('div:not(#dropHint)');
+    allPlaced.forEach(d=>{
+        if(d.id !== 'dropHint') d.remove();
+    })
+    count = 0;
+    selectedCount.innerText = 0;
+    dropHint.style.display='flex';
+})
+
+// 滚动淡入简单效果
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+        if(en.isIntersecting){
+            en.target.classList.add('animate-fadeup');
+        }
+    })
+},{threshold:0.1})
+
+document.querySelectorAll('section > div').forEach(blk=>{
+    observer.observe(blk);
+})
+</script>
+</body>
+</html>
